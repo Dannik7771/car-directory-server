@@ -1,41 +1,57 @@
 package com.drownedman.car_directory_server.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
+import javax.persistence.*;
+
+@Entity
+@Table(name="car_properties")
 public class CarProperties {
     //Относятся к комплектации авто
-    private int carId;
-    private String equipment;
-    private String fuelType;
-    private short power;
-    private short topSpeed;
-    private short fuelTankVolume;
-    private float engineVolume;
-    private int numberOfCylinders;
-    private String driveUnit;
-    private boolean pressurization;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "properties_id")
+    private long propertiesId;
 
-    public CarProperties(int carId, String equipment, String fuelType, short power,
-                         short topSpeed, short fuelTankVolume, float engineVolume,
-                         int numberOfCylinders, String driveUnit, boolean pressurization) {
-        this.carId = carId;
-        this.equipment = equipment;
-        this.fuelType = fuelType;
-        this.power = power;
-        this.topSpeed = topSpeed;
-        this.fuelTankVolume = fuelTankVolume;
-        this.engineVolume = engineVolume;
-        this.numberOfCylinders = numberOfCylinders;
-        this.driveUnit = driveUnit;
-        this.pressurization = pressurization;
-    }
+    @Column(name = "car_id")
+    private long carId;
+
+    @Column(name = "equipment")
+    private String equipment;
+
+    @Column(name = "fuel_type")
+    private String fuelType;
+
+    @Column(name = "power")
+    private short power;
+
+    @Column(name = "top_speed")
+    private short topSpeed;
+
+    @Column(name = "fuel_tank_volume")
+    private short fuelTankVolume;
+
+    @Column(name = "engine_volume")
+    private float engineVolume;
+
+    @Column(name = "number_of_cylinders")
+    private int numberOfCylinders;
+
+    @Column(name = "drive_unit")
+    private String driveUnit;
+
+    @Column(name = "pressurization")
+    private boolean pressurization;
 
     public CarProperties() {
     }
 
-    public int getCarId() {
+    public long getCarId() {
         return carId;
     }
 
-    public void setCarId(int carId) {
+    public void setCarId(long carId) {
         this.carId = carId;
     }
 

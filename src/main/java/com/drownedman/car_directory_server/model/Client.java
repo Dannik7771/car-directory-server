@@ -1,16 +1,29 @@
 package com.drownedman.car_directory_server.model;
 
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@Entity
+@Table(name="client")
 public class Client {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
+    @Column(name = "name")
     private String name;
+
+    @Column(name = "email")
     private String email;
+
+    @Column(name = "password")
     private String password;
-    private List<Role> roles;
+
+    @Column(name = "roles")
+    private String roles;
 
     public enum Role {
         Admin(0),
@@ -43,11 +56,11 @@ public class Client {
         }
     }
 
-    public List<Integer> getRoleValues() {
+    /*public List<Integer> getRoleValues() {
         List<Integer> roleValues = new ArrayList<>();
         for (Role role : roles) roleValues.add(role.getValue());
         return roleValues;
-    }
+    }*/
 
     public int getId() {
         return id;
@@ -81,11 +94,11 @@ public class Client {
         this.password = password;
     }
 
-    public List<Role> getRoles() {
+    public String getRoles() {
         return roles;
     }
 
-    public void setRoles(List<Role> roles) {
+    public void setRoles(String roles) {
         this.roles = roles;
     }
 

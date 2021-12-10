@@ -1,30 +1,52 @@
 package com.drownedman.car_directory_server.model;
 
-import java.util.ArrayList;
+import javax.persistence.*;
 import java.util.List;
 
+@Entity
+@Table(name="car_title")
 public class CarTitle {
-    //CarTitle, CarBodyType, CarCharacteristics
-    private String brand;
-    private String model;
-    private int carId; //Идентификатор данной модели
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "car_title_id")
+    private long carTitleId;
 
-    //Относятся к модели авто
+    @Column(name = "car_id")
+    private long carId;
+
+    @Column(name = "brand")
+    private String brand;
+
+    @Column(name = "model")
+    private String model;
+
+    @Column(name = "body_type")
     private String bodyType;
+
+    @Column(name = "min_cost")
     private int minCost;
+
+    @ElementCollection
+    @Column(name = "images")
     private List<String> images;
 
     public CarTitle() {
-        images = new ArrayList<>();
     }
 
-    public CarTitle(String brand, String model, int carId, String bodyType, int minCost) {
-        images = new ArrayList<>();
-        this.brand = brand;
-        this.model = model;
+    public long getCarTitleId() {
+        return carTitleId;
+    }
+
+    public void setCarTitleId(long carTitleId) {
+        this.carTitleId = carTitleId;
+    }
+
+    public long getCarId() {
+        return carId;
+    }
+
+    public void setCarId(long carId) {
         this.carId = carId;
-        this.bodyType = bodyType;
-        this.minCost = minCost;
     }
 
     public String getBrand() {
@@ -41,14 +63,6 @@ public class CarTitle {
 
     public void setModel(String model) {
         this.model = model;
-    }
-
-    public int getCarId() {
-        return carId;
-    }
-
-    public void setCarId(int carId) {
-        this.carId = carId;
     }
 
     public String getBodyType() {
@@ -73,17 +87,5 @@ public class CarTitle {
 
     public void setImages(List<String> images) {
         this.images = images;
-    }
-
-    @Override
-    public String toString() {
-        return "CarTitle{" +
-                "brand='" + brand + '\'' +
-                ", model='" + model + '\'' +
-                ", carId=" + carId +
-                ", bodyType='" + bodyType + '\'' +
-                ", minCost=" + minCost +
-                ", images=" + images +
-                '}';
     }
 }
