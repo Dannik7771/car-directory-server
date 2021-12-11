@@ -1,6 +1,5 @@
 package com.drownedman.car_directory_server.controller;
 
-import com.drownedman.car_directory_server.model.CarTitle;
 import com.drownedman.car_directory_server.model.Client;
 import com.drownedman.car_directory_server.service.ClientService;
 import lombok.extern.slf4j.Slf4j;
@@ -28,7 +27,7 @@ public class ClientController {
     @GetMapping("/email/{email}")
     ResponseEntity<Client> findClient(@PathVariable("email") String email) {
         log.info("find client request: {}", email);
-        return ResponseEntity.ok(service.findClient(email));
+        return ResponseEntity.ok(service.findClientByEmail(email));
     }
 
     @GetMapping("/exist/email/{email}")

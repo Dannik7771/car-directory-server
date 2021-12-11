@@ -22,8 +22,18 @@ public class Client {
     @Column(name = "password")
     private String password;
 
+    @ElementCollection(fetch = FetchType.EAGER)
     @Column(name = "roles")
-    private String roles;
+    private List<Role> roles;
+
+    public Client() {}
+
+    public Client(String name, String email, String password, List<Role> roles) {
+        this.name = name;
+        this.email = email;
+        this.password = password;
+        this.roles = roles;
+    }
 
     public enum Role {
         Admin(0),
@@ -94,11 +104,11 @@ public class Client {
         this.password = password;
     }
 
-    public String getRoles() {
+    public List<Role> getRoles() {
         return roles;
     }
 
-    public void setRoles(String roles) {
+    public void setRoles(List<Role> roles) {
         this.roles = roles;
     }
 

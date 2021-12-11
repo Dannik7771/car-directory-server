@@ -14,8 +14,12 @@ public class ClientService {
     @Autowired
     private ClientRepository repository;
 
-    public Client findClient(String email) {
+    public Client findClientByEmail(String email) {
         return repository.findByEmail(email);
+    }
+
+    public Client findClientByName(String name) {
+        return repository.findByName(name);
     }
 
     public Boolean isClientExist(String email) {
