@@ -18,24 +18,26 @@ public class ClientController {
     @Autowired
     private ClientService service;
 
-    @GetMapping()
-    public ResponseEntity<List<Client>> getAllClients() {
-        log.info("get all clients request");
-        return ResponseEntity.ok(service.getAllClients());
-    }
-
-    @GetMapping("/email/{email}")
-    ResponseEntity<Client> findClient(@PathVariable("email") String email) {
-        log.info("find client request: {}", email);
-        return ResponseEntity.ok(service.findClientByEmail(email));
-    }
-
     @GetMapping("/exist/email/{email}")
     ResponseEntity<Boolean> isClientExist(@PathVariable("email") String email) {
         log.info("is client exist request: {}", email);
         return ResponseEntity.ok(service.isClientExist(email));
     }
 
+    //debug
+    @GetMapping()
+    public ResponseEntity<List<Client>> getAllClients() {
+        log.info("get all clients request");
+        return ResponseEntity.ok(service.getAllClients());
+    }
+
+
+    @GetMapping("/email/{email}")
+    ResponseEntity<Client> findClient(@PathVariable("email") String email) {
+        log.info("find client request: {}", email);
+        return ResponseEntity.ok(service.findClientByEmail(email));
+    }
+    /*
     @PostMapping()
     ResponseEntity<Client> addClient(@RequestBody Client client) {
         log.info("add client request: {}", client);
@@ -48,5 +50,5 @@ public class ClientController {
     void deleteClients() {
         log.info("delete all clients");
         service.deleteClients();
-    }
+    }*/
 }
