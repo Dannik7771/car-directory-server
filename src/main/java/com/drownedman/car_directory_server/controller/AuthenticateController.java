@@ -77,7 +77,7 @@ public class AuthenticateController {
                             body.getName(),
                             body.getEmail(),
                             passwordEncoder.encode(body.getPassword()),
-                            Arrays.asList(Client.Role.User, Client.Role.Admin)
+                            body.getRoles()
                     )
             );
         } else {

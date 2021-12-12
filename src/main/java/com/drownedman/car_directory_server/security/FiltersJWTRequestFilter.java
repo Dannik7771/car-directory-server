@@ -47,8 +47,13 @@ public class FiltersJWTRequestFilter extends OncePerRequestFilter {
             userName = jwtController.extractUsername(jwt);
             role = jwtController.extractRoles(jwt);
         }
-        System.out.println("username: "+userName);
-        System.out.println("roles: "+role);
+
+        if (authorizationHeader == null || !authorizationHeader.startsWith("Bearer "))
+            System.out.println("the client did not provide a token");
+        else {
+            System.out.println("username: " + userName);
+            System.out.println("roles: " + role);
+        }
 
         if (userName != null && SecurityContextHolder.getContext().getAuthentication() == null) {
             UserDetails userDetails = this.clientDetailsService.loadUserByUsername(userName);
