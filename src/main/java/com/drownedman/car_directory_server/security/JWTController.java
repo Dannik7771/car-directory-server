@@ -27,6 +27,7 @@ public class JWTController {
     }
 
     public List<Client.Role> extractRoles(String token) throws JsonProcessingException {
+        if (token.startsWith("Bearer ")) token = token.substring(7);
         String rolesJson = (extractAllClaims(token).get("roles", String.class));
         CollectionType listType = mapper.getTypeFactory().constructCollectionType(ArrayList.class, Client.Role.class);
         return mapper.readValue(rolesJson, listType);
